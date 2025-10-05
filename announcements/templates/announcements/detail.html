@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}{{ announcement.title }}{% endblock %}
+{% block content %}
+  <h2>{{ announcement.title }}</h2>
+  <p id="short-text">{{ announcement.content|truncatechars:100 }}</p>
+  <p id="full-text" style="display:none;">{{ announcement.content }}</p>
+  <button id="toggle-btn">Read more</button>
+
+  <script>
+    const btn = document.getElementById("toggle-btn");
+    const shortText = document.getElementById("short-text");
+    const fullText = document.getElementById("full-text");
+
+    btn.addEventListener("click", () => {
+      if (fullText.style.display === "none") {
+        fullText.style.display = "block";
+        shortText.style.display = "none";
+        btn.textContent = "Show less";
+      } else {
+        fullText.style.display = "none";
+        shortText.style.display = "block";
+        btn.textContent = "Read more";
+      }
+    });
+  </script>
+{% endblock %}
